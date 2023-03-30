@@ -1,0 +1,42 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: #353638;
+
+  }
+  
+  #app {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #696969;
+  }
+  
+  h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  button {
+    font-size: 16px;
+    padding: 10px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: transparent; /* измененное значение */
+    color: white;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  button:disabled {
+    background-color: #ccc;
+    cursor: default;
+  }
+  
+  .timer {
+    font-size: 48px;
+    text-align: center;
+    margin-bottom: 20px;
+  }

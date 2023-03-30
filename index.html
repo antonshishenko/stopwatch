@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Секундомеры</title>
+  <script src="https://unpkg.com/vue@3.2.26/dist/vue.global.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: #353638;
+    }
+
+    #app {
+      max-width: 225px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #696969;
+      margin-top: 72px;
+    }
+
+    h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      font-size: 16px;
+      padding: 10px;
+      margin-right: 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: transparent;
+      color: white;
+      cursor: pointer;
+      outline: none;
+    }
+
+    button:disabled {
+      opacity: 0.5;
+      cursor: default;
+    }
+
+    .timer {
+      font-size: 48px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .border {
+      border-top: 1px solid #9E9E9E;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div v-for="(timer, index) in timers" :key="index">
+      <div style="color: #9E9E9E; text-align: center; font-size: 22px;">{{ formatTime(timer.time) }}</div>
+      <div class="border"></div>
+      <div style="text-align: center;">
+        <button @click="startTimer(timer)" :disabled="timer.running || timer.finished"><img src="треугольник.svg"
+            alt=""></button>
+        <button @click="pauseTimer(timer)" :disabled="!timer.running || timer.finished"><img src="квадрат.svg"
+            alt=""></button>
+      </div>
+
+    </div>
+    <div style="text-align: center;">
+      <button @click="addTimer"
+        style="font-size: 16px; padding: 10px; margin-right: 10px; border: none; border-radius: 5px; background-color: transparent; color: white; cursor: pointer; outline: none;"><img
+          src="plus.svg" alt=""></button>
+    </div>
+
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>
+
+
+
+
+
+<!--script.js
+const app = Vue.createApp({
+    data() {
+      return {
+        timers: [{ time: 0, running: false, finished: false }]
+      }
+    },
+    methods: {
+      startTimer(timer) {
+        timer.running = true
+        timer.interval = setInterval(() => {
+          timer.time++
+        }, 1000)
+      },
+      pauseTimer(timer) {
+        timer.running = false
+        clearInterval(timer.interval)
+      },
+      resetTimer(timer) {
+        timer.running = false
+        timer.finished = false
+        timer.time = 0
+        clearInterval(timer.interval)
+      },
+      stopTimer(timer) {
+        timer.running = false
+        clearInterval(timer.interval)
+      },
+      addTimer() {
+        const newTimer = { time: 0, running: false, finished: false }
+        this.timers.push(newTimer)
+        this.stopTimer(newTimer)
+      },
+      formatTime(time) {
+        const minutes = Math.floor(time / 60)
+        const seconds = time % 60
+        return `${minutes}:${seconds.toString().padStart(2, '0')}`
+      }
+    }
+  })
+  
+  app.mount('#app')
+  -->
